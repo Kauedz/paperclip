@@ -382,7 +382,7 @@ export function RoutineDetail() {
 
   useEffect(() => {
     if (!routine) return;
-    setBreadcrumbs([{ label: "Routines", href: "/routines" }, { label: routine.title }]);
+    setBreadcrumbs([{ label: "Rotinas", href: "/routines" }, { label: routine.title }]);
     if (!routineDefaults) return;
 
     const changedRoutine = hydratedRoutineIdRef.current !== routine.id;
@@ -441,7 +441,7 @@ export function RoutineDetail() {
     onError: (error) => {
       pushToast({
         title: "Failed to save routine",
-        body: error instanceof Error ? error.message : "Paperclip could not save the routine.",
+        body: error instanceof Error ? error.message : "Althius could not save the routine.",
         tone: "error",
       });
     },
@@ -475,7 +475,7 @@ export function RoutineDetail() {
     onError: (error) => {
       pushToast({
         title: "Routine run failed",
-        body: error instanceof Error ? error.message : "Paperclip could not start the routine run.",
+        body: error instanceof Error ? error.message : "Althius could not start the routine run.",
         tone: "error",
       });
     },
@@ -497,7 +497,7 @@ export function RoutineDetail() {
     onError: (error) => {
       pushToast({
         title: "Failed to update routine",
-        body: error instanceof Error ? error.message : "Paperclip could not update the routine.",
+        body: error instanceof Error ? error.message : "Althius could not update the routine.",
         tone: "error",
       });
     },
@@ -544,7 +544,7 @@ export function RoutineDetail() {
     onError: (error) => {
       pushToast({
         title: "Failed to add trigger",
-        body: error instanceof Error ? error.message : "Paperclip could not create the trigger.",
+        body: error instanceof Error ? error.message : "Althius could not create the trigger.",
         tone: "error",
       });
     },
@@ -567,7 +567,7 @@ export function RoutineDetail() {
     onError: (error) => {
       pushToast({
         title: "Failed to update trigger",
-        body: error instanceof Error ? error.message : "Paperclip could not update the trigger.",
+        body: error instanceof Error ? error.message : "Althius could not update the trigger.",
         tone: "error",
       });
     },
@@ -589,7 +589,7 @@ export function RoutineDetail() {
     onError: (error) => {
       pushToast({
         title: "Failed to delete trigger",
-        body: error instanceof Error ? error.message : "Paperclip could not delete the trigger.",
+        body: error instanceof Error ? error.message : "Althius could not delete the trigger.",
         tone: "error",
       });
     },
@@ -611,7 +611,7 @@ export function RoutineDetail() {
     onError: (error) => {
       pushToast({
         title: "Failed to rotate webhook secret",
-        body: error instanceof Error ? error.message : "Paperclip could not rotate the webhook secret.",
+        body: error instanceof Error ? error.message : "Althius could not rotate the webhook secret.",
         tone: "error",
       });
     },
@@ -651,7 +651,7 @@ export function RoutineDetail() {
   const currentProject = editDraft.projectId ? projectById.get(editDraft.projectId) ?? null : null;
 
   if (!selectedCompanyId) {
-    return <EmptyState icon={Repeat} message="Select a company to view routines." />;
+    return <EmptyState icon={Repeat} message="Selecione uma empresa para ver as rotinas." />;
   }
 
   if (isLoading) {
@@ -661,7 +661,7 @@ export function RoutineDetail() {
   if (error || !routine) {
     return (
       <p className="pt-6 text-sm text-destructive">
-        {error instanceof Error ? error.message : "Routine not found"}
+        {error instanceof Error ? error.message : "Rotina não encontrada"}
       </p>
     );
   }
@@ -670,12 +670,12 @@ export function RoutineDetail() {
   const selectedProject = routine.projectId ? (projects?.find((project) => project.id === routine.projectId) ?? null) : null;
   const automationToggleDisabled = updateRoutineStatus.isPending || routine.status === "archived";
   const automationLabel = routine.status === "archived"
-    ? "Archived"
+    ? "Arquivada"
     : !routine.assigneeAgentId
-      ? "Draft"
+      ? "Rascunho"
       : automationEnabled
-        ? "Active"
-        : "Paused";
+        ? "Ativa"
+        : "Pausada";
   const automationLabelClassName = routine.status === "archived"
     ? "text-muted-foreground"
     : automationEnabled
@@ -689,7 +689,7 @@ export function RoutineDetail() {
         <textarea
           ref={titleInputRef}
           className="flex-1 min-w-0 resize-none overflow-hidden bg-transparent text-xl font-bold outline-none placeholder:text-muted-foreground/50"
-          placeholder="Routine title"
+          placeholder="Título da rotina"
           rows={1}
           value={editDraft.title}
           onChange={(event) => {
@@ -728,11 +728,11 @@ export function RoutineDetail() {
             checked={automationEnabled}
             onCheckedChange={() => {
               if (!automationEnabled && !routine.assigneeAgentId) {
-                pushToast({
-                  title: "Default agent required",
-                  body: "Set a default agent before enabling routine automation.",
-                  tone: "warn",
-                });
+pushToast({
+          title: "Agente padrão necessário",
+          body: "Defina um agente padrão antes de ativar a automação da rotina.",
+          tone: "warn",
+        });
                 return;
               }
               updateRoutineStatus.mutate(automationEnabled ? "paused" : "active");
@@ -774,7 +774,7 @@ export function RoutineDetail() {
 
       {!routine.assigneeAgentId ? (
         <div className="rounded-lg border border-amber-500/30 bg-amber-500/5 p-4 text-sm text-amber-900 dark:text-amber-200">
-          Default agent required. This routine can stay as a draft and still run manually, but automation stays paused until you assign a default agent.
+          Agente padrão necessário. Esta rotina pode permanecer como rascunho e ainda ser executada manualmente, mas a automação permanece pausada até você atribuir um agente padrão.
         </div>
       ) : null}
 
@@ -892,13 +892,13 @@ export function RoutineDetail() {
       {/* Advanced delivery settings */}
       <Collapsible open={advancedOpen} onOpenChange={setAdvancedOpen}>
         <CollapsibleTrigger className="flex w-full items-center justify-between text-left">
-          <span className="text-sm font-medium">Advanced delivery settings</span>
+          <span className="text-sm font-medium">Configurações avançadas de entrega</span>
           {advancedOpen ? <ChevronDown className="h-4 w-4 text-muted-foreground" /> : <ChevronRight className="h-4 w-4 text-muted-foreground" />}
         </CollapsibleTrigger>
         <CollapsibleContent className="pt-3">
           <div className="grid gap-4 md:grid-cols-2">
             <div className="space-y-2">
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">Concurrency</p>
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">Concorrência</p>
               <Select
                 value={editDraft.concurrencyPolicy}
                 onValueChange={(concurrencyPolicy) => setEditDraft((current) => ({ ...current, concurrencyPolicy }))}
@@ -915,7 +915,7 @@ export function RoutineDetail() {
               <p className="text-xs text-muted-foreground">{concurrencyPolicyDescriptions[editDraft.concurrencyPolicy]}</p>
             </div>
             <div className="space-y-2">
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">Catch-up</p>
+              <p className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">Recuperação</p>
               <Select
                 value={editDraft.catchUpPolicy}
                 onValueChange={(catchUpPolicy) => setEditDraft((current) => ({ ...current, catchUpPolicy }))}
@@ -938,7 +938,7 @@ export function RoutineDetail() {
       {/* Save bar */}
       <div className="flex items-center justify-between">
         {isEditDirty ? (
-          <span className="text-xs text-amber-600">Unsaved changes</span>
+          <span className="text-xs text-amber-600">Alterações não salvas</span>
         ) : (
           <span />
         )}
@@ -947,7 +947,7 @@ export function RoutineDetail() {
           disabled={saveRoutine.isPending || !editDraft.title.trim()}
         >
           <Save className="mr-2 h-4 w-4" />
-          Save routine
+          Salvar rotina
         </Button>
       </div>
 
@@ -956,25 +956,25 @@ export function RoutineDetail() {
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-3">
         <TabsList variant="line" className="w-full justify-start gap-1">
-          <TabsTrigger value="triggers" className="gap-1.5">
+<TabsTrigger value="triggers" className="gap-1.5">
             <Clock3 className="h-3.5 w-3.5" />
-            Triggers
+            Gatilhos
           </TabsTrigger>
           <TabsTrigger value="runs" className="gap-1.5">
             <Play className="h-3.5 w-3.5" />
-            Runs
+            Execuções
             {hasLiveRun && <span className="h-2 w-2 rounded-full bg-blue-500 animate-pulse" />}
           </TabsTrigger>
-<TabsTrigger value="activity" className="gap-1.5">
+          <TabsTrigger value="activity" className="gap-1.5">
             <ActivityIcon className="h-3.5 w-3.5" />
-            Activity
+            Atividade
           </TabsTrigger>
         </TabsList>
 
         <TabsContent value="triggers" className="space-y-4">
           {/* Add trigger form */}
           <div className="rounded-lg border border-border p-4 space-y-3">
-            <p className="text-sm font-medium">Add trigger</p>
+            <p className="text-sm font-medium">Adicionar gatilho</p>
             <div className="grid gap-3 md:grid-cols-2">
               <div className="space-y-1.5">
                 <Label className="text-xs">Kind</Label>
@@ -1027,14 +1027,14 @@ export function RoutineDetail() {
             </div>
             <div className="flex items-center justify-end">
               <Button size="sm" onClick={() => createTrigger.mutate()} disabled={createTrigger.isPending}>
-                {createTrigger.isPending ? "Adding..." : "Add trigger"}
+                {createTrigger.isPending ? "Adicionando..." : "Adicionar gatilho"}
               </Button>
             </div>
           </div>
 
           {/* Existing triggers */}
           {routine.triggers.length === 0 ? (
-            <p className="text-xs text-muted-foreground">No triggers configured yet.</p>
+            <p className="text-xs text-muted-foreground">Nenhum gatilho configurado ainda.</p>
           ) : (
             <div className="space-y-3">
               {routine.triggers.map((trigger) => (
@@ -1055,7 +1055,7 @@ export function RoutineDetail() {
             <LiveRunWidget issueId={activeIssueId} companyId={routine.companyId} />
           )}
           {(routineRuns ?? []).length === 0 ? (
-            <p className="text-xs text-muted-foreground">No runs yet.</p>
+            <p className="text-xs text-muted-foreground">Nenhuma execução ainda.</p>
           ) : (
             <div className="border border-border rounded-lg divide-y divide-border">
               {(routineRuns ?? []).map((run) => (
@@ -1083,7 +1083,7 @@ export function RoutineDetail() {
 
         <TabsContent value="activity">
           {(activity ?? []).length === 0 ? (
-            <p className="text-xs text-muted-foreground">No activity yet.</p>
+            <p className="text-xs text-muted-foreground">Nenhuma atividade ainda.</p>
           ) : (
             <div className="border border-border rounded-lg divide-y divide-border">
               {(activity ?? []).map((event) => (

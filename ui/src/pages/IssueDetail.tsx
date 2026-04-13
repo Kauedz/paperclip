@@ -497,7 +497,7 @@ export function IssueDetail() {
     [location.state, resolvedIssueDetailState],
   );
   const sourceBreadcrumb = useMemo(
-    () => readIssueDetailBreadcrumb(issueId, location.state, location.search) ?? { label: "Issues", href: "/issues" },
+    () => readIssueDetailBreadcrumb(issueId, location.state, location.search) ?? { label: "Tarefas", href: "/issues" },
     [issueId, location.state, location.search],
   );
 
@@ -896,8 +896,8 @@ export function IssueDetail() {
         queryClient.setQueryData(queryKeys.issues.list(context.selectedCompanyId), context.previousList);
       }
       pushToast({
-        title: "Issue update failed",
-        body: err instanceof Error ? err.message : "Unable to save issue changes",
+        title: "Falha ao atualizar tarefa",
+        body: err instanceof Error ? err.message : "Não foi possível salvar as alterações da tarefa",
         tone: "error",
       });
     },

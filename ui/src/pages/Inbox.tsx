@@ -701,7 +701,7 @@ export function Inbox() {
   });
 
   useEffect(() => {
-    setBreadcrumbs([{ label: "Inbox" }]);
+    setBreadcrumbs([{ label: "Caixa de entrada" }]);
   }, [setBreadcrumbs]);
 
   useEffect(() => {
@@ -1892,14 +1892,14 @@ export function Inbox() {
           icon={searchQuery.trim() ? Search : InboxIcon}
           message={
             searchQuery.trim()
-              ? "No inbox items match your search."
+              ? "Nenhum item corresponde à sua busca."
               : tab === "mine"
-              ? "Inbox zero."
+              ? "Caixa de entrada vazia."
               : tab === "unread"
-              ? "No new inbox items."
+              ? "Nenhum item novo."
               : tab === "recent"
-                ? "No recent inbox items."
-                : "No inbox items match these filters."
+                ? "Nenhum item recente."
+                : "Nenhum item corresponde a estes filtros."
           }
         />
       )}

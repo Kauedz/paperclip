@@ -109,11 +109,11 @@ export function Agents() {
   }, [agents]);
 
   useEffect(() => {
-    setBreadcrumbs([{ label: "Agents" }]);
+    setBreadcrumbs([{ label: "Agentes" }]);
   }, [setBreadcrumbs]);
 
   if (!selectedCompanyId) {
-    return <EmptyState icon={Bot} message="Select a company to view agents." />;
+    return <EmptyState icon={Bot} message="Selecione uma empresa para ver os agentes." />;
   }
 
   if (isLoading) {
@@ -129,10 +129,10 @@ export function Agents() {
         <Tabs value={tab} onValueChange={(v) => navigate(`/agents/${v}`)}>
           <PageTabBar
             items={[
-              { value: "all", label: "All" },
-              { value: "active", label: "Active" },
-              { value: "paused", label: "Paused" },
-              { value: "error", label: "Error" },
+              { value: "all", label: "Todos" },
+              { value: "active", label: "Ativos" },
+              { value: "paused", label: "Pausados" },
+              { value: "error", label: "Erro" },
             ]}
             value={tab}
             onValueChange={(v) => navigate(`/agents/${v}`)}

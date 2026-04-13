@@ -43,7 +43,7 @@ export function AgentProperties({ agent, runtimeState }: AgentPropertiesProps) {
         <PropertyRow label="Status">
           <StatusBadge status={agent.status} />
         </PropertyRow>
-        <PropertyRow label="Role">
+        <PropertyRow label="Função">
           <span className="text-sm">{roleLabels[agent.role] ?? agent.role}</span>
         </PropertyRow>
         {agent.title && (

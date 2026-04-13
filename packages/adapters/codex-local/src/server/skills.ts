@@ -52,7 +52,7 @@ async function buildCodexSkillSnapshot(
       readOnly: false,
       sourcePath: null,
       targetPath: null,
-      detail: "Paperclip cannot find this skill in the local runtime skills directory.",
+      detail: "Althius cannot find this skill in the local runtime skills directory.",
     });
   }
 

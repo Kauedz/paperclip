@@ -68,7 +68,7 @@ async function buildClaudeSkillSnapshot(config: Record<string, unknown>): Promis
       readOnly: false,
       sourcePath: undefined,
       targetPath: undefined,
-      detail: "Paperclip cannot find this skill in the local runtime skills directory.",
+      detail: "Althius cannot find this skill in the local runtime skills directory.",
     });
   }
 

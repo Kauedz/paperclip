@@ -134,7 +134,11 @@ function createFaviconDataUrl(background: string, foreground: string): string {
   const svg = [
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">',
     `<rect width="24" height="24" rx="6" fill="${background}"/>`,
-    `<path stroke="${foreground}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.15" d="m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551"/>`,
+    `<path stroke="${foreground}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.5 16.5c-1.5 1.26-2 2-2 2.5 0 1.5 1.5 2 2.5 2 1.5-1.5 2-2.5 2-2.5-1.5-1-2.5-1.5-2.5-2z"/>`,
+    `<path stroke="${foreground}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18c-1.5 0-3-1-3-2.5 0-1 .5-1.5 1.5-1.5 1 0 1.5.5 1.5 1.5 0 1-1 1.5-1.5 2-1.5.5-2 1-2 1.5 0 .5 1.5 1 3 1.5"/>`,
+    `<path stroke="${foreground}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 7.5c1 1 1.5 2.5 1.5 4 0 2-1 3.5-2.5 4.5-1 .7-2 1-3 .5"/>`,
+    `<path stroke="${foreground}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 6c-1.5 1-2 3-2 4.5 0 2.5 1.5 4 3.5 5 1.5-.5 2.5-1.5 3-3"/>`,
+    `<path stroke="${foreground}" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10c0 2.5 1 4 3 5.5"/>`,
     "</svg>",
   ].join("");
   return `data:image/svg+xml,${encodeURIComponent(svg)}`;
@@ -182,10 +186,10 @@ export function renderRuntimeBrandingMeta(branding: WorktreeUiBranding): string 
   if (!branding.enabled || !branding.name || !branding.color || !branding.textColor) return "";
 
   return [
-    '<meta name="paperclip-worktree-enabled" content="true" />',
-    `<meta name="paperclip-worktree-name" content="${escapeHtmlAttribute(branding.name)}" />`,
-    `<meta name="paperclip-worktree-color" content="${escapeHtmlAttribute(branding.color)}" />`,
-    `<meta name="paperclip-worktree-text-color" content="${escapeHtmlAttribute(branding.textColor)}" />`,
+    '<meta name="althius-worktree-enabled" content="true" />',
+    `<meta name="althius-worktree-name" content="${escapeHtmlAttribute(branding.name)}" />`,
+    `<meta name="althius-worktree-color" content="${escapeHtmlAttribute(branding.color)}" />`,
+    `<meta name="althius-worktree-text-color" content="${escapeHtmlAttribute(branding.textColor)}" />`,
   ].join("\n");
 }
 

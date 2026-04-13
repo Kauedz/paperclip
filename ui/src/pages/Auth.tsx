@@ -5,7 +5,7 @@ import { authApi } from "../api/auth";
 import { queryKeys } from "../lib/queryKeys";
 import { Button } from "@/components/ui/button";
 import { AsciiArtAnimation } from "@/components/AsciiArtAnimation";
-import { Sparkles } from "lucide-react";
+import { Rocket } from "lucide-react";
 
 type AuthMode = "sign_in" | "sign_up";
 
@@ -51,7 +51,7 @@ export function AuthPage() {
       navigate(nextPath, { replace: true });
     },
     onError: (err) => {
-      setError(err instanceof Error ? err.message : "Authentication failed");
+      setError(err instanceof Error ? err.message : "Falha na autenticação");
     },
   });
 
@@ -63,7 +63,7 @@ export function AuthPage() {
   if (isSessionLoading) {
     return (
       <div className="fixed inset-0 flex items-center justify-center">
-        <p className="text-sm text-muted-foreground">Loading…</p>
+        <p className="text-sm text-muted-foreground">Carregando…</p>
       </div>
     );
   }
@@ -74,17 +74,17 @@ export function AuthPage() {
       <div className="w-full md:w-1/2 flex flex-col overflow-y-auto">
         <div className="w-full max-w-md mx-auto my-auto px-8 py-12">
           <div className="flex items-center gap-2 mb-8">
-            <Sparkles className="h-4 w-4 text-muted-foreground" />
-            <span className="text-sm font-medium">Paperclip</span>
+            <Rocket className="h-4 w-4 text-muted-foreground" />
+            <span className="text-sm font-medium">Althius ALG</span>
           </div>
 
           <h1 className="text-xl font-semibold">
-            {mode === "sign_in" ? "Sign in to Paperclip" : "Create your Paperclip account"}
+            {mode === "sign_in" ? "Entrar na Althius ALG" : "Criar sua conta Althius ALG"}
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             {mode === "sign_in"
-              ? "Use your email and password to access this instance."
-              : "Create an account for this instance. Email confirmation is not required in v1."}
+              ? "Use seu e-mail e senha para acessar esta instância."
+              : "Crie uma conta nesta instância. Confirmação de e-mail não é necessária."}
           </p>
 
           <form
@@ -95,7 +95,7 @@ export function AuthPage() {
               event.preventDefault();
               if (mutation.isPending) return;
               if (!canSubmit) {
-                setError("Please fill in all required fields.");
+                setError("Preencha todos os campos obrigatórios.");
                 return;
               }
               mutation.mutate();
@@ -103,7 +103,7 @@ export function AuthPage() {
           >
             {mode === "sign_up" && (
               <div>
-                <label htmlFor="name" className="text-xs text-muted-foreground mb-1 block">Name</label>
+                <label htmlFor="name" className="text-xs text-muted-foreground mb-1 block">Nome</label>
                 <input
                   id="name"
                   name="name"
@@ -116,7 +116,7 @@ export function AuthPage() {
               </div>
             )}
             <div>
-              <label htmlFor="email" className="text-xs text-muted-foreground mb-1 block">Email</label>
+              <label htmlFor="email" className="text-xs text-muted-foreground mb-1 block">E-mail</label>
               <input
                 id="email"
                 name="email"
@@ -129,7 +129,7 @@ export function AuthPage() {
               />
             </div>
             <div>
-              <label htmlFor="password" className="text-xs text-muted-foreground mb-1 block">Password</label>
+              <label htmlFor="password" className="text-xs text-muted-foreground mb-1 block">Senha</label>
               <input
                 id="password"
                 name="password"
@@ -148,15 +148,15 @@ export function AuthPage() {
               className={`w-full ${!canSubmit && !mutation.isPending ? "opacity-50" : ""}`}
             >
               {mutation.isPending
-                ? "Working…"
+                ? "Processando…"
                 : mode === "sign_in"
-                  ? "Sign In"
-                  : "Create Account"}
+                  ? "Entrar"
+                  : "Criar conta"}
             </Button>
           </form>
 
           <div className="mt-5 text-sm text-muted-foreground">
-            {mode === "sign_in" ? "Need an account?" : "Already have an account?"}{" "}
+            {mode === "sign_in" ? "Precisa de uma conta?" : "Já tem uma conta?"}{" "}
             <button
               type="button"
               className="font-medium text-foreground underline underline-offset-2"
@@ -165,7 +165,7 @@ export function AuthPage() {
                 setMode(mode === "sign_in" ? "sign_up" : "sign_in");
               }}
             >
-              {mode === "sign_in" ? "Create one" : "Sign in"}
+              {mode === "sign_in" ? "Criar uma" : "Entrar"}
             </button>
           </div>
         </div>
